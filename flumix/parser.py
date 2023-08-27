@@ -18,11 +18,16 @@ def parse_tokens(tokens: "list[Token]") -> Expression:
     else:
         return atom(token)
 
+def number(token: Token) -> Atom:
+    if token.count('.') > 0:
+        return Float(token)
+    else:
+        return Int(token)
+
 def atom(token: Token) -> Atom:
-    if token[0] in list("1234567890-"):
-        if token.count('.') > 0:
-            return Float(token)
-        else:
-            return Int(token)
+    if token[0] in list("1234567890"):
+        return number(token)
+    elif token[0] == "-" and len(token) > 1 and token[1] in list("1234567890"):
+        return number(token)
     else:
         return Symbol(token)
