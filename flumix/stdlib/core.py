@@ -1,4 +1,4 @@
-from ..types import PythonFunction
+from ..types import Function, PythonFunction
 from .. import interpreter
 
 def _print(args, env):
@@ -13,7 +13,7 @@ def _func(args, env):
     name = args[0]
     params = args[1]
     body = args[2:]
-    func = Function(name, body, False)
+    func = Function(name, body, False, params)
     env[name] = func
 
 STDLIB_CORE = {

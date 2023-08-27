@@ -13,16 +13,20 @@ class Float(float):
 Env = dict
 
 class Function:
-    def __init__(self, name: Symbol, body, eval_args: bool) -> None:
+    def __init__(self, name: Symbol, body, eval_args: bool, params=[]) -> None:
         self.name = name
         self.body = body
         self.eval_args = eval_args
+        self.params = params
     
     def exec(self, args, env: Env):
+        for i in range(len(self.params)):
+            env[self.params[i]] = args[i]
+
         from . import interpreter
         for expr in self.body[:-1]:
             interpreter.eval(expr, env)
-        return interpreter.eval(expr[-1], env)
+        return interpreter.eval(self.body[-1], env)
 
 class PythonFunction(Function):
     def __init__(self, name: Symbol, body, eval_args: bool) -> None:
