@@ -14,7 +14,7 @@ def _func(args, env):
     params = args[1]
     body = args[2:]
     func = Function(name, body, False, params)
-    env[name] = func
+    env.outer[name] = func
 
 STDLIB_CORE = {
     "do": PythonFunction("do", _do, False),

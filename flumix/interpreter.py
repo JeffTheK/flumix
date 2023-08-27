@@ -3,15 +3,6 @@ from . import lexer
 from . import parser
 from .stdlib.env import STD_ENV
 
-def _if(expression: Expression, env: Env):
-    condition = expression[1]
-    on_true = expression[2]
-    on_false = expression[3]
-    if eval(condition, env) == True:
-        return eval(on_true, env)
-    else:
-        return eval(on_false, env)
-
 def function_call(expression: Expression, env: Env):
     function: Function = eval(expression[0], env)
     
@@ -19,12 +10,16 @@ def function_call(expression: Expression, env: Env):
     if function.eval_args:
         for x in range(len(args)):
             args[x] = eval(args[x], env)
+
+    local_env = Env(env)
+    for i in range(len(function.params)):
+            local_env[function.params[i]] = args[i]
     
-    return function.exec(args, env)
+    return function.exec(args, local_env)
 
 def eval(expression: Expression, env: Env):
     if isinstance(expression, Symbol):
-        return env[expression]
+        return env.find(expression)
     elif isinstance(expression, Float) or isinstance(expression, Int):
         return expression
     else:

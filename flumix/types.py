@@ -10,8 +10,19 @@ class Float(float):
     def __new__(cls, *args, **kw):
         return super().__new__(cls, *args, **kw)
 
-Env = dict
-
+class Env(dict):
+    def __init__(self, outer: dict, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.outer = outer
+    
+    def find(self, object):
+        if object in self:
+            return self[object]
+        elif self.outer != None:
+            return self.outer.find(object)
+        else:
+            return None
+        
 class Function:
     def __init__(self, name: Symbol, body, eval_args: bool, params=[]) -> None:
         self.name = name
@@ -20,9 +31,6 @@ class Function:
         self.params = params
     
     def exec(self, args, env: Env):
-        for i in range(len(self.params)):
-            env[self.params[i]] = args[i]
-
         from . import interpreter
         for expr in self.body[:-1]:
             interpreter.eval(expr, env)
