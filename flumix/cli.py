@@ -1,16 +1,21 @@
 import sys
 from . import lexer
 from . import interpreter 
+from . repl import repl_loop
 
 def main():
     exec(sys.argv)
 
 def exec(args: "list[str]"):
-    file_path = args[-1]
-    if "-tokenize" in args:
-        tokenize_file(file_path)
+    if len(args) == 1:
+        repl_loop()
     else:
-        exec_file(file_path)
+        file_path = args[-1]
+
+        if "-tokenize" in args:
+            tokenize_file(file_path)
+        else:
+            exec_file(file_path)
 
 def tokenize_file(file_path):
     file = open(file_path, 'r')

@@ -28,9 +28,9 @@ def eval(expression: Expression, env: Env):
     elif isinstance(expression, Float) or isinstance(expression, Int):
         return expression
     else:
-        function_call(expression, env)
+        return function_call(expression, env)
 
 def exec_string(string: str, env=STD_ENV):
     tokens = lexer.tokenize(string)
     expression = parser.parse_tokens(tokens)
-    eval(expression, STD_ENV)
+    return eval(expression, STD_ENV)
