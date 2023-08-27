@@ -1,4 +1,7 @@
 from .types import Expression, Env, Symbol, Float, Int, Function
+from . import lexer
+from . import parser
+from .std_env import STD_ENV
 
 def _if(expression: Expression, env: Env):
     condition = expression[1]
@@ -26,3 +29,8 @@ def eval(expression: Expression, env: Env):
         return expression
     else:
         function_call(expression, env)
+
+def exec_string(string: str, env=STD_ENV):
+    tokens = lexer.tokenize(string)
+    expression = parser.parse_tokens(tokens)
+    eval(expression, STD_ENV)
