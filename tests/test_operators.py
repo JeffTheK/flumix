@@ -42,3 +42,30 @@ def test_ne(capsys):
     exec_string("(print (!= 1 2))")
     captured = capsys.readouterr()
     assert(captured.out == "True\n")
+
+def test_not(capsys):
+    exec_string("(print (not (== 1 1)))")
+    captured = capsys.readouterr()
+    assert(captured.out == "False\n")
+
+    exec_string("(print (not (== 1 2)))")
+    captured = capsys.readouterr()
+    assert(captured.out == "True\n")
+
+def test_and(capsys):
+    exec_string("(print (and (== 1 1) (== 1 1)))")
+    captured = capsys.readouterr()
+    assert(captured.out == "True\n")
+
+    exec_string("(print (and (== 1 1) (== 1 2)))")
+    captured = capsys.readouterr()
+    assert(captured.out == "False\n")
+
+def test_or(capsys):
+    exec_string("(print (or (== 1 1) (== 1 2)))")
+    captured = capsys.readouterr()
+    assert(captured.out == "True\n")
+
+    exec_string("(print (or (== 1 2) (== 2 1)))")
+    captured = capsys.readouterr()
+    assert(captured.out == "False\n")
