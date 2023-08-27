@@ -1,4 +1,4 @@
-from .types import Expression, Int, Float, Symbol, Atom
+from .types import Expression, Int, Float, Symbol, Atom, String
 from .lexer import Token
 from .error import raise_error
 
@@ -24,10 +24,15 @@ def number(token: Token) -> Atom:
     else:
         return Int(token)
 
+def string(token: Token) -> String:
+    return token[1:-1]
+
 def atom(token: Token) -> Atom:
     if token[0] in list("1234567890"):
         return number(token)
     elif token[0] == "-" and len(token) > 1 and token[1] in list("1234567890"):
         return number(token)
+    elif token[0] == '"':
+        return string(token)
     else:
         return Symbol(token)

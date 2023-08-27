@@ -15,3 +15,13 @@ def test_do(capsys):
     exec_string(code)
     captured = capsys.readouterr()
     assert(captured.out == "1\n2\n3\n")
+
+def test_include_file(capsys):
+    code = """(do
+    (include-file "tests/testfile.fl")
+    (print (my-add 2 3))
+)
+"""
+    exec_string(code)
+    captured = capsys.readouterr()
+    assert(captured.out == "5\n")

@@ -43,6 +43,7 @@ class PythonFunction(Function):
     def exec(self, args, env: Env):
         return self.body(args, env)
 
-Atom = (Symbol, Int, Float)
+String = str
+Atom = (Symbol, Int, Float, String)
 List = list
 Expression = (Atom, List)
