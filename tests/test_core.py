@@ -16,6 +16,16 @@ def test_do(capsys):
     captured = capsys.readouterr()
     assert(captured.out == "1\n2\n3\n")
 
+def test_var(capsys):
+    code = """(do
+    (var a 1)
+    (print a)
+)
+"""
+    exec_string(code)
+    captured = capsys.readouterr()
+    assert(captured.out == "1\n")
+
 def test_include_file(capsys):
     code = """(do
     (include-file "tests/testfile.fl")

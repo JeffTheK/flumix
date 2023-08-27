@@ -1,4 +1,4 @@
-from .types import Expression, Env, Symbol, Float, Int, Function, String
+from .types import Expression, Env, Symbol, Float, Int, Function, PythonFunction, String
 from . import lexer
 from . import parser
 from .stdlib.env import STD_ENV
@@ -18,7 +18,7 @@ def function_call(expression: Expression, env: Env):
     return function.exec(args, local_env)
 
 def eval(expression: Expression, env: Env):
-    if isinstance(expression, Symbol):
+    if isinstance(expression, Symbol): # variable reference
         return env.find(expression)
     elif isinstance(expression, Float) or isinstance(expression, Int) or isinstance(expression, String):
         return expression

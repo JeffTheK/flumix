@@ -9,6 +9,12 @@ def _do(args, env):
     for a in args:
         interpreter.eval(a, env)
 
+def _var(args, env):
+    from ..types import Symbol
+    name = args[0]
+    value = interpreter.eval(args[1], env)
+    env.outer[name] = value
+
 def _func(args, env):
     name = args[0]
     params = args[1]
@@ -24,6 +30,7 @@ def _include_file(args, env):
 
 STDLIB_CORE = {
     "do": PythonFunction("do", _do, False),
+    "var": PythonFunction("var", _var, False),
     "func": PythonFunction("func", _func, False),
     "print": PythonFunction("print", _print, True),
     "include-file": PythonFunction("include-file", _include_file, True)
