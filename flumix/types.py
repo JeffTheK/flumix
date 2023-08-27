@@ -20,15 +20,16 @@ class Function:
     
     def exec(self, args, env: Env):
         from . import interpreter
-        for expr in self.body:
+        for expr in self.body[:-1]:
             interpreter.eval(expr, env)
+        return interpreter.eval(expr[-1], env)
 
 class PythonFunction(Function):
     def __init__(self, name: Symbol, body, eval_args: bool) -> None:
         super().__init__(name, body, eval_args)
     
     def exec(self, args, env: Env):
-        self.body(args, env)
+        return self.body(args, env)
 
 Atom = (Symbol, Int, Float)
 List = list

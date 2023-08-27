@@ -1,7 +1,7 @@
 from .types import Expression, Env, Symbol, Float, Int, Function
 from . import lexer
 from . import parser
-from .std_env import STD_ENV
+from .stdlib.env import STD_ENV
 
 def _if(expression: Expression, env: Env):
     condition = expression[1]

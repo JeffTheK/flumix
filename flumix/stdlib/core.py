@@ -1,5 +1,5 @@
-from .types import PythonFunction, Function
-from . import interpreter
+from ..types import PythonFunction
+from .. import interpreter
 
 def _print(args, env):
     for a in args:
@@ -16,7 +16,7 @@ def _func(args, env):
     func = Function(name, body, False)
     env[name] = func
 
-STD_ENV = {
+STDLIB_CORE = {
     "do": PythonFunction("do", _do, False),
     "func": PythonFunction("func", _func, False),
     "print": PythonFunction("print", _print, True)
