@@ -6,10 +6,19 @@ from .std_env import STD_ENV
 
 def main():
     exec(sys.argv)
-    
-def exec(args):
-    file_path = args[1]
-    exec_file(file_path)
+
+def exec(args: "list[str]"):
+    file_path = args[-1]
+    if "-tokenize" in args:
+        tokenize_file(file_path)
+    else:
+        exec_file(file_path)
+
+def tokenize_file(file_path):
+    file = open(file_path, 'r')
+    contents = file.read()
+    file.close()
+    print(lexer.tokenize(contents))
 
 def exec_file(file_path: str):
     file = open(file_path, 'r')

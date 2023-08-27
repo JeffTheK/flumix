@@ -11,9 +11,11 @@ def _if(expression: Expression, env: Env):
 
 def function_call(expression: Expression, env: Env):
     function: Function = eval(expression[0], env)
-    args = []
-    for x in expression[1:]:
-        args.append(eval(x, env))
+    
+    args = expression[1:]
+    if function.eval_args:
+        for x in range(len(args)):
+            args[x] = eval(args[x], env)
     
     return function.exec(args, env)
 

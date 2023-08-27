@@ -13,16 +13,17 @@ class Float(float):
 Env = dict
 
 class Function:
-    def __init__(self, name: Symbol, body) -> None:
+    def __init__(self, name: Symbol, body, eval_args: bool) -> None:
         self.name = name
         self.body = body
+        self.eval_args = eval_args
     
     def exec(self, args, env: Env):
         pass
 
 class PythonFunction(Function):
-    def __init__(self, name: Symbol, body) -> None:
-        super().__init__(name, body)
+    def __init__(self, name: Symbol, body, eval_args: bool) -> None:
+        super().__init__(name, body, eval_args)
     
     def exec(self, args, env: Env):
         self.body(args, env)
