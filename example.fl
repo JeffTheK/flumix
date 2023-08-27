@@ -1,4 +1,8 @@
 (do 
+    (func greet ()
+        (print 999)
+    )
     (print 10)
     (print 120)
+    (greet)
 )

@@ -24,7 +24,5 @@ def eval(expression: Expression, env: Env):
         return env[expression]
     elif isinstance(expression, Float) or isinstance(expression, Int):
         return expression
-    elif expression[0] == "if":
-        _if(expression, env)
     else:
         function_call(expression, env)

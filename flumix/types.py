@@ -19,7 +19,9 @@ class Function:
         self.eval_args = eval_args
     
     def exec(self, args, env: Env):
-        pass
+        from . import interpreter
+        for expr in self.body:
+            interpreter.eval(expr, env)
 
 class PythonFunction(Function):
     def __init__(self, name: Symbol, body, eval_args: bool) -> None:
