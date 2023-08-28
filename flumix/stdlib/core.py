@@ -39,7 +39,7 @@ def _include_file(args, env):
 
     for search_dir in INCLUDE_FILE_SEARCH_DIRS:
         if os.path.exists(os.path.join(search_dir, path)):
-            with open(path, 'r') as file:
+            with open(os.path.join(search_dir, path), 'r') as file:
                 contents = file.read()
                 interpreter.exec_string(contents)
                 return
