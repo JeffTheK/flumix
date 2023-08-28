@@ -23,7 +23,7 @@ DATA_DIR = os.path.join(home_directory, ".flumix")
 PKG_DIR = os.path.join(DATA_DIR, "pkg")
 STDLIB_PKG_DIR = os.path.join(PKG_DIR, "stdlib")
 DIRS = [DATA_DIR, PKG_DIR, STDLIB_PKG_DIR]
-STDLIB_PACKAGE_SOURCE_FILES = ["tk.fl"]
+STDLIB_PACKAGE_SOURCE_FILES = ["tk.fl", "operators.fl"]
 
 def create_directories():
     for dir in DIRS:

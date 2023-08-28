@@ -22,6 +22,14 @@ class Env(dict):
             return self.outer.find(object)
         else:
             return None
+    
+    def find_env(self, object):
+        if object in self:
+            return self
+        elif self.outer != None:
+            return self.outer.find_env(object)
+        else:
+            return None
         
 class Function:
     def __init__(self, name: Symbol, body, eval_args: bool, params=[]) -> None:

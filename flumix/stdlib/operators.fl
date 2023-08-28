@@ -1,0 +1,5 @@
+(do
+    (func ++ (arg)
+        (set arg )
+    )
+)
