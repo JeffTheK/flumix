@@ -1,0 +1,6 @@
+(do
+    (py-wrapper/import "tkinter")
+    (py-wrapper/new-class-wrapper "Tk" "tkinter.Tk")
+    (var root (py-wrapper/new-instance "Tk" ()))
+    (py-wrapper/call-method mainloop root ())
+)

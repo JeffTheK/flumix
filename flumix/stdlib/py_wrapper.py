@@ -1,6 +1,7 @@
 from ..types import Function, PythonFunction, Class
 from .. import interpreter
 import sys
+import importlib
 
 class PyClassWrapper:
     def __init__(self, python_class):
@@ -33,9 +34,15 @@ def call_method(args, env):
 def py_eval_string(args, env):
     return eval(args[0])
 
+def py_import_module(args, env):
+    module_name = args[0]
+    module = importlib.import_module(module_name)
+    globals()[module_name] = module
+
 STDLIB_PY_WRAPPER = {
-    "py-wrapper/new-py-class-wrapper": PythonFunction("py-wrapper/new-py-class-wrapper", new_py_class_wrapper, False),
-    "py-wrapper/new-py-class-instance": PythonFunction("py-wrapper/new-py-class-instance", new_py_class_instance, False),
+    "py-wrapper/new-class-wrapper": PythonFunction("py-wrapper/new-class-wrapper", new_py_class_wrapper, False),
+    "py-wrapper/new-instance": PythonFunction("py-wrapper/new-instance", new_py_class_instance, False),
     "py-wrapper/call-method": PythonFunction("py-wrapper/call-method", call_method, False),
-    "py-wrapper/py-eval": PythonFunction("py-wrapper/py-eval", py_eval_string, True)
+    "py-wrapper/eval": PythonFunction("py-wrapper/eval", py_eval_string, True),
+    "py-wrapper/import": PythonFunction("py-wrapper/import", py_import_module, True),
 }
