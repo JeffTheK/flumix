@@ -1,3 +1,5 @@
-(func my-add (a b)
-    (+ a b)
+(do
+    (func my-add (a b)
+        (+ a b)
+    )
 )

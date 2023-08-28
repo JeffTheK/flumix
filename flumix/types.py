@@ -30,6 +30,12 @@ class Env(dict):
             return self.outer.find_env(object)
         else:
             return None
+    
+    def global_env(self):
+        if self.outer == None:
+            return self
+        else:
+            return self.outer.global_env()
         
 class Function:
     def __init__(self, name: Symbol, body, eval_args: bool, params=[]) -> None:

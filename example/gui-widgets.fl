@@ -1,3 +1,5 @@
 (do
     (include-file "tk.fl")
+    (var root (Tk/new ()))
+    (py-wrapper/call-method mainloop root ())
 )

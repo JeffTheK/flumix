@@ -32,7 +32,7 @@ def _func(args, env):
     params = args[1]
     body = args[2:]
     func = Function(name, body, False, params)
-    env.outer[name] = func
+    env.global_env()[name] = func
 
 def _include_file(args, env):
     path = args[0]
@@ -41,7 +41,7 @@ def _include_file(args, env):
         if os.path.exists(os.path.join(search_dir, path)):
             with open(os.path.join(search_dir, path), 'r') as file:
                 contents = file.read()
-                interpreter.exec_string(contents)
+                interpreter.exec_string(contents, env)
                 return
     
     raise_error("Runtime", f"File '{path}' not found")

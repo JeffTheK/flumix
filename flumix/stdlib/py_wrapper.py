@@ -14,7 +14,9 @@ def new_py_class_wrapper(args, env):
     wrapper_name = args[0]
     python_class_name = args[1]
     python_class = eval(python_class_name) # FIXME: a bit hackish and unsafe
-    env.outer[wrapper_name] = PyClassWrapper(python_class)
+    constructor_function_name = f"{wrapper_name}/new"
+    env.global_env()[wrapper_name] = PyClassWrapper(python_class)
+    env.global_env()[constructor_function_name] = PythonFunction(constructor_function_name, lambda a, e, cl=python_class: python_class(), False)
 
 def new_py_class_instance(args, env):
     _class_name = args[0]
