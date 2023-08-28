@@ -4,6 +4,7 @@ class Lexer:
     def __init__(self, text) -> None:
         self.text = text
         self.current = 0
+        self.line = 1
         self.char = text[0]
         self.tokens = []
 
@@ -12,6 +13,8 @@ def is_at_end(lexer):
 
 def advance(lexer):
     lexer.current += 1
+    if lexer.char == '\n':
+                lexer.line += 1
     lexer.char = lexer.text[lexer.current]
 
 def peek(lexer) -> str:
@@ -64,5 +67,5 @@ def tokenize(text: str) -> Token:
         elif lexer.char == '\0':
             continue
         else:
-            raise Exception(f"Unexpected character {lexer.char}")
+            raise Exception(f"Unexpected character at line {lexer.line} {lexer.char}")
     return lexer.tokens

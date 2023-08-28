@@ -1,4 +1,4 @@
-(do
+(do $
     (if (== 2 1)
         (print "yes")
         (print "no")
