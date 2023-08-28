@@ -1,3 +1,5 @@
+from .error import raise_error
+
 Token = str
 
 class Lexer:
@@ -44,7 +46,7 @@ def string(lexer):
     value = '"' + value + '"'
     lexer.tokens.append(value)
 
-def tokenize(text: str) -> Token:
+def tokenize(text: str, file_name=None) -> Token:
     text += '\0'
     lexer = Lexer(text)
     while not is_at_end(lexer):
@@ -67,5 +69,5 @@ def tokenize(text: str) -> Token:
         elif lexer.char == '\0':
             continue
         else:
-            raise Exception(f"Unexpected character at line {lexer.line} {lexer.char}")
+            raise_error("Lexer", f"Unexpected character '{lexer.char}'", line=lexer.line, source_code=lexer.text, file_name=file_name)
     return lexer.tokens

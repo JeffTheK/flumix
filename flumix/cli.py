@@ -21,7 +21,7 @@ def tokenize_file(file_path):
     file = open(file_path, 'r')
     contents = file.read()
     file.close()
-    print(lexer.tokenize(contents))
+    print(lexer.tokenize(contents, file_path))
 
 def exec_file(file_path: str):
     file = open(file_path, 'r')
