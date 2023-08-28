@@ -1,8 +1,6 @@
-(do 
-    (func greet ()
-        (print 999)
+(do
+    (if (== 2 1)
+        (print "yes")
+        (print "no")
     )
-    (print 10)
-    (print 120)
-    (greet)
 )
