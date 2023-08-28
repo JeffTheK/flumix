@@ -8,8 +8,11 @@ def test_plus(capsys):
 
     (var jeff (person/new ("Jeff" 16)))
     (print (getp name jeff))
+
+    (setp name jeff "Jeffry")
+    (print (getp name jeff))
 )
 """
     exec_string(code)
     captured = capsys.readouterr()
-    assert(captured.out == "True\nTrue\nJeff\n")
+    assert(captured.out == "True\nTrue\nJeff\nJeffry\n")

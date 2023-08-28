@@ -31,7 +31,15 @@ def get_property(args, env):
     property = instance.variables[property_name]
     return property
 
+def set_property(args, env):
+    property_name = args[0]
+    instance_name = args[1]
+    new_value = args[2]
+    instance: Instance = env.find(instance_name)
+    instance.variables[property_name] = new_value
+
 STDLIB_OOP = {
     "class": PythonFunction("class", define_class, False),
     "getp": PythonFunction("getp", get_property, False),
+    "setp": PythonFunction("setp", set_property, False),
 }
