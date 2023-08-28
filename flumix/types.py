@@ -43,6 +43,16 @@ class PythonFunction(Function):
     def exec(self, args, env: Env):
         return self.body(args, env)
 
+class Class:
+    def __init__(self, name, instance_variables) -> None:
+        self.name = name
+        self.instance_variables = instance_variables
+
+class Instance:
+    def __init__(self, _class, variables) -> None:
+        self._class = _class
+        self.variables = variables
+
 String = str
 Atom = (Symbol, Int, Float, String)
 List = list
