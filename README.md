@@ -36,10 +36,38 @@ For example, this program will sum two numbers:
 (print "Hello")
 ```
 
+#### Operators
+
+- `+`: Addition.
+- `-`: Subtraction.
+- `*`: Multiplication.
+- `/`: Division.
+- `^`: Raise to power of.
+
+- `==`: Equal to.
+- `!=`: Not equal to.
+- `<`: Less than.
+- `<=`: Less than or equal to.
+- `>`: Greater than.
+- `>=`: Greater than or equal to.
+
+- `and`: Logical AND.
+- `or`: Logical OR.
+- `not`: Logical NOT.
+
 #### Variable Declaration
 
 ```flumix
 (var i 5)
+```
+
+#### If Else
+
+```flumix
+(if (== 1 1)
+    (print "yes")
+    (print "no")
+)
 ```
 
 #### Function Declaration

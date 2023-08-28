@@ -35,3 +35,39 @@ def test_include_file(capsys):
     exec_string(code)
     captured = capsys.readouterr()
     assert(captured.out == "5\n")
+
+def test_if_true(capsys):
+    code = """(do
+    (if (== 1 1)
+        (print "yes")
+        (print "no")
+    )
+)
+"""
+    exec_string(code)
+    captured = capsys.readouterr()
+    assert(captured.out == "yes\n")
+
+def test_if_false(capsys):
+    code = """(do
+    (if (== 2 1)
+        (print "yes")
+        (print "no")
+    )
+)
+"""
+    exec_string(code)
+    captured = capsys.readouterr()
+    assert(captured.out == "no\n")
+
+def test_if_no_else(capsys):
+    code = """(do
+    (if (== 1 1)
+        (print "yes")
+        ()
+    )
+)
+"""
+    exec_string(code)
+    captured = capsys.readouterr()
+    assert(captured.out == "yes\n")
