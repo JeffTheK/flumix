@@ -36,8 +36,18 @@ def _func(args, env):
     name = args[0]
     params = args[1]
     body = args[2:]
+    func = Function(name, body, True, params)
+    env.global_env()[name] = func
+
+def _macro(args, env):
+    name = args[0]
+    params = args[1]
+    body = args[2:]
     func = Function(name, body, False, params)
     env.global_env()[name] = func
+
+def _eval(args, env):
+    interpreter.eval(*args, env)
 
 def _include_file(args, env):
     path = args[0]
@@ -66,6 +76,8 @@ STDLIB_CORE = {
     "var": PythonFunction("var", _var, False, ["name", "value"]),
     "set": PythonFunction("set", _set, False, ["symbol", "new-value"]),
     "func": PythonFunction("func", _func, False, any_number_of_args=True),
+    "macro": PythonFunction("macro", _macro, False, any_number_of_args=True),
+    "eval": PythonFunction("eval", _eval, False, any_number_of_args=True),
     "print": PythonFunction("print", _print, True, any_number_of_args=True),
     "pprint": PythonFunction("pprint", _pprint, True, any_number_of_args=True),
     "if": PythonFunction("if", _if, False, ["condition", "on-true", "on-false"]),

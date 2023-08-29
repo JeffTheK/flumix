@@ -27,3 +27,15 @@ def test_function_with_args(capsys):
     exec_string(code)
     captured = capsys.readouterr()
     assert(captured.out == "1\n2\n3\n")
+
+def test_macro(capsys):
+    code = """(do 
+    (macro my-macro (a)
+        (print a)
+    )
+    (my-macro (print "Hello"))
+)
+"""
+    exec_string(code)
+    captured = capsys.readouterr()
+    assert(captured.out == "['print', 'Hello']\n")

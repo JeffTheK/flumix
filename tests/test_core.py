@@ -87,3 +87,12 @@ def test_if_no_else(capsys):
     exec_string(code)
     captured = capsys.readouterr()
     assert(captured.out == "yes\n")
+
+def test_eval(capsys):
+    code = """(do
+    (eval (print "Hello"))
+)
+"""
+    exec_string(code)
+    captured = capsys.readouterr()
+    assert(captured.out == "Hello\n")

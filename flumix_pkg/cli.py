@@ -37,3 +37,12 @@ def new_package(pkg: Package):
         os.mkdir(dir)
     create_file_from_template(PKG_JSON_TEXT, os.path.join(pkg.name, "package.json"), pkg)
     create_file_from_template(PKG_JSON_TEXT, os.path.join(SRC_DIR, "main.fl"), pkg)
+
+    os.system(f"cd {pkg.name} && git init")
+
+def clone_package_repo(author, pkg_name):
+    command = f"git clone https://github.com/{author}/{pkg_name}.git"
+    os.system(command)
+
+def download_and_install_package(author, pkg_name):
+    clone_package_repo(author, pkg_name)
