@@ -13,7 +13,7 @@ setup(
     entry_points={
         'console_scripts': [
             'flumix = flumix.cli:main',
-            'fl-to-cpp = fl_to_cpp.cli:main'
+            'flumix-pkg = flumix_pkg.cli:main'
         ],
     }
 )
