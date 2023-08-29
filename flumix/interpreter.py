@@ -2,6 +2,7 @@ from .types import Expression, Env, Symbol, Float, Int, Function, PythonFunction
 from . import lexer
 from . import parser
 from .stdlib.env import STD_ENV
+from .error import raise_error
 
 def function_call(expression: Expression, env: Env):
     function: Function = eval(expression[0], env)
@@ -17,10 +18,34 @@ def function_call(expression: Expression, env: Env):
     
     return function.exec(args, local_env)
 
+def is_variable_reference(expression: Expression):
+    return isinstance(expression, Symbol)
+
+def is_atom(expression: Expression):
+    return isinstance(expression, Float) or isinstance(expression, Int) or isinstance(expression, String)
+
+def analyze(expression: Expression, env: Env):
+    if is_variable_reference(expression):
+        variable = env.find(expression)
+        if variable is None:
+            raise_error("Interpreter", f"variable '{expression}' not found")
+    elif is_atom(expression):
+        pass
+    else:
+        function_symbol = expression[0]
+        if env.find(function_symbol) is None:
+            raise_error("Interpreter", f"function '{expression}' not defined")
+        args = expression[1:]
+        function: Function = env.find(function_symbol)
+        if (not function.any_number_of_args) and len(args) != len(function.params):
+            raise_error("Interpreter", f"wrong number of arguments when calling '{function_symbol}', expected {len(function.params)} got {len(args)}")
+
 def eval(expression: Expression, env: Env):
-    if isinstance(expression, Symbol): # variable reference
+    analyze(expression, env)
+
+    if is_variable_reference(expression):
         return env.find(expression)
-    elif isinstance(expression, Float) or isinstance(expression, Int) or isinstance(expression, String):
+    elif is_atom(expression):
         return expression
     else:
         return function_call(expression, env)

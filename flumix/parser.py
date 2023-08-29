@@ -6,23 +6,26 @@ def parse_tokens(tokens: "list[Token]") -> Expression:
     if len(tokens) == 0:
         raise_error("Parser", "Unexpected EOF")
     
-    token = tokens.pop(0)
-    if token == '(':
-        inner = []
-        while tokens[0] != ")":
-            inner.append(parse_tokens(tokens))
-        tokens.pop(0) # pop off ')'
-        return inner
-    elif token == ')':
-        raise_error("Parser", "Unexpected ')'")
-    else:
-        return atom(token)
+    try:
+        token = tokens.pop(0)
+        if token == '(':
+            inner = []
+            while tokens[0] != ")":
+                inner.append(parse_tokens(tokens))
+            tokens.pop(0) # pop off ')'
+            return inner
+        elif token == ')':
+            raise_error("Parser", "Unexpected ')'")
+        else:
+            return atom(token)
+    except Exception as e:
+        raise_error("Parser", f"Unexpected exception {e}", line=token.line)
 
 def number(token: Token) -> Atom:
     if token.count('.') > 0:
-        return Float(token)
+        return Float(token.value)
     else:
-        return Int(token)
+        return Int(token.value)
 
 def string(token: Token) -> String:
     return token[1:-1]

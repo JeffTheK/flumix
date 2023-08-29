@@ -6,7 +6,7 @@ def test_plus(capsys):
     (print (special/env-contains "person"))
     (print (special/env-contains "person/new"))
 
-    (var jeff (person/new ("Jeff" 16)))
+    (var jeff (person/new "Jeff" 16))
     (print (getp name jeff))
 
     (setp name jeff "Jeffry")

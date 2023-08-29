@@ -12,7 +12,7 @@ def exec(args: "list[str]"):
     else:
         file_path = args[-1]
 
-        if "-tokenize" in args:
+        if "--tokenize" in args:
             tokenize_file(file_path)
         else:
             exec_file(file_path)

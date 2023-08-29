@@ -38,11 +38,12 @@ class Env(dict):
             return self.outer.global_env()
         
 class Function:
-    def __init__(self, name: Symbol, body, eval_args: bool, params=[]) -> None:
+    def __init__(self, name: Symbol, body, eval_args: bool, params=[], any_number_of_args=False) -> None:
         self.name = name
         self.body = body
         self.eval_args = eval_args
         self.params = params
+        self.any_number_of_args = any_number_of_args
     
     def exec(self, args, env: Env):
         from . import interpreter
@@ -51,8 +52,8 @@ class Function:
         return interpreter.eval(self.body[-1], env)
 
 class PythonFunction(Function):
-    def __init__(self, name: Symbol, body, eval_args: bool) -> None:
-        super().__init__(name, body, eval_args)
+    def __init__(self, name: Symbol, body, eval_args: bool, params=[], any_number_of_args=False) -> None:
+        super().__init__(name, body, eval_args, params, any_number_of_args)
     
     def exec(self, args, env: Env):
         return self.body(args, env)
@@ -69,5 +70,5 @@ class Instance:
 
 String = str
 Atom = (Symbol, Int, Float, String)
-List = list
-Expression = (Atom, List)
+ListExpression = list
+Expression = (Atom, ListExpression)

@@ -42,9 +42,9 @@ def py_import_module(args, env):
     globals()[module_name] = module
 
 STDLIB_PY_WRAPPER = {
-    "py-wrapper/new-class-wrapper": PythonFunction("py-wrapper/new-class-wrapper", new_py_class_wrapper, False),
-    "py-wrapper/new-instance": PythonFunction("py-wrapper/new-instance", new_py_class_instance, False),
-    "py-wrapper/call-method": PythonFunction("py-wrapper/call-method", call_method, False),
-    "py-wrapper/eval": PythonFunction("py-wrapper/eval", py_eval_string, True),
-    "py-wrapper/import": PythonFunction("py-wrapper/import", py_import_module, True),
+    "py-wrapper/new-class-wrapper": PythonFunction("py-wrapper/new-class-wrapper", new_py_class_wrapper, False, ["wrapper-name", "python-class-name"]),
+    "py-wrapper/new-instance": PythonFunction("py-wrapper/new-instance", new_py_class_instance, False, ["class-name", "init-args"]),
+    "py-wrapper/call-method": PythonFunction("py-wrapper/call-method", call_method, False, ["method-name", "instance-name", "method-args"]),
+    "py-wrapper/eval": PythonFunction("py-wrapper/eval", py_eval_string, True, ["string"]),
+    "py-wrapper/import": PythonFunction("py-wrapper/import", py_import_module, True, ["module-name"]),
 }

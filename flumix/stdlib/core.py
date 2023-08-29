@@ -57,11 +57,11 @@ def _if(args, env):
         interpreter.eval(on_false, env)
 
 STDLIB_CORE = {
-    "do": PythonFunction("do", _do, False),
-    "var": PythonFunction("var", _var, False),
-    "set": PythonFunction("set", _set, False),
-    "func": PythonFunction("func", _func, False),
-    "print": PythonFunction("print", _print, True),
-    "if": PythonFunction("if", _if, False),
-    "include-file": PythonFunction("include-file", _include_file, True),
+    "do": PythonFunction("do", _do, False, any_number_of_args=True),
+    "var": PythonFunction("var", _var, False, ["name", "value"]),
+    "set": PythonFunction("set", _set, False, ["symbol", "new-value"]),
+    "func": PythonFunction("func", _func, False, any_number_of_args=True),
+    "print": PythonFunction("print", _print, True, any_number_of_args=True),
+    "if": PythonFunction("if", _if, False, ["condition", "on-true", "on-false"]),
+    "include-file": PythonFunction("include-file", _include_file, True, ["path"]),
 }

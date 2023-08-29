@@ -2,7 +2,7 @@ from ..types import Function, PythonFunction, Class, Instance
 from .. import interpreter
 
 def constructor(args, env, _class):
-    variable_values = args[0]
+    variable_values = args
     variable_names = _class.instance_variables
     variables = {}
     for x in range(len(variable_values)):
@@ -13,7 +13,7 @@ def constructor(args, env, _class):
 
 def create_constructor(_class, env):
     func_name = f"{_class.name}/new"
-    env.outer[func_name] = PythonFunction(func_name, lambda a, e, c=_class: constructor(a, e, c), False)
+    env.outer[func_name] = PythonFunction(func_name, lambda a, e, c=_class: constructor(a, e, c), False, _class.instance_variables)
 
 def define_class(args, env):
     name = args[0]
@@ -39,7 +39,7 @@ def set_property(args, env):
     instance.variables[property_name] = new_value
 
 STDLIB_OOP = {
-    "class": PythonFunction("class", define_class, False),
-    "getp": PythonFunction("getp", get_property, False),
-    "setp": PythonFunction("setp", set_property, False),
+    "class": PythonFunction("class", define_class, False, ["name", "instance-variables"]),
+    "getp": PythonFunction("getp", get_property, False, ["property", "instance"]),
+    "setp": PythonFunction("setp", set_property, False, ["property", "instance", "new-value"]),
 }

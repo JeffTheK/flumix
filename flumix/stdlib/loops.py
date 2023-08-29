@@ -12,5 +12,5 @@ def _for(args, env):
         interpreter.eval(action, env)
 
 STDLIB_LOOPS = {
-    "for": PythonFunction("for", _for, False),
+    "for": PythonFunction("for", _for, False, ["var", "condition", "increment", "action"]),
 }

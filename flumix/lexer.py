@@ -1,6 +1,24 @@
 from .error import raise_error
 
-Token = str
+class Token:
+    def __init__(self, value, line):
+        self.value = value
+        self.line = line
+    
+    def __eq__(self, __value: object) -> bool:
+        return self.value == __value
+    
+    def __getitem__(self, index):
+        return self.value[index]
+    
+    def __repr__(self) -> str:
+        return self.value
+    
+    def __len__(self):
+        return len(self.value)
+
+    def count(self, string):
+        return self.value.count(string)
 
 class Lexer:
     def __init__(self, text) -> None:
@@ -27,14 +45,14 @@ def number(lexer):
     while lexer.char not in [' ', ')', '\n'] or is_at_end(lexer):
         number += lexer.char
         advance(lexer)
-    lexer.tokens.append(number)
+    add_token(lexer, number)
 
 def symbol(lexer):
     symbol = ""
     while lexer.char not in [' ', ')', '\n'] or is_at_end(lexer):
         symbol += lexer.char
         advance(lexer)
-    lexer.tokens.append(symbol)
+    add_token(lexer, symbol)
 
 def string(lexer):
     value = ""
@@ -44,30 +62,37 @@ def string(lexer):
         advance(lexer)
     advance(lexer)
     value = '"' + value + '"'
-    lexer.tokens.append(value)
+    add_token(lexer, value)
+
+def add_token(lexer, value):
+    token = Token(value, lexer.line)
+    lexer.tokens.append(token)
 
 def tokenize(text: str, file_name=None) -> Token:
-    text += '\0'
-    lexer = Lexer(text)
-    while not is_at_end(lexer):
-        if lexer.char in ['(', ')']:
-            lexer.tokens.append(lexer.char)
-            advance(lexer)
-        elif lexer.char in [' ', '\n']:
-            advance(lexer)
-        elif lexer.char == '-':
-            if peek(lexer) in list("0123456789"):
+    try:
+        text += '\0'
+        lexer = Lexer(text)
+        while not is_at_end(lexer):
+            if lexer.char in ['(', ')']:
+                add_token(lexer, lexer.char)
+                advance(lexer)
+            elif lexer.char in [' ', '\n']:
+                advance(lexer)
+            elif lexer.char == '-':
+                if peek(lexer) in list("0123456789"):
+                    number(lexer)
+                else:
+                    symbol(lexer)
+            elif lexer.char in list("0123456789"):
                 number(lexer)
-            else:
+            elif lexer.char.isalpha() or lexer.char in list("!=<>*/^+-"):
                 symbol(lexer)
-        elif lexer.char in list("0123456789"):
-            number(lexer)
-        elif lexer.char.isalpha() or lexer.char in list("!=<>*/^+-"):
-            symbol(lexer)
-        elif lexer.char == '"':
-            string(lexer)
-        elif lexer.char == '\0':
-            continue
-        else:
-            raise_error("Lexer", f"Unexpected character '{lexer.char}'", line=lexer.line, source_code=lexer.text, file_name=file_name)
-    return lexer.tokens
+            elif lexer.char == '"':
+                string(lexer)
+            elif lexer.char == '\0':
+                continue
+            else:
+                raise_error("Lexer", f"Unexpected character '{lexer.char}'", line=lexer.line, source_code=lexer.text, file_name=file_name)
+        return lexer.tokens
+    except Exception as e:
+        raise_error("Lexer", f"Unexpected exception {e}", line=lexer.line, file_name=file_name, source_code=text)
