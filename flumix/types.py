@@ -50,6 +50,9 @@ class Function:
         for expr in self.body[:-1]:
             interpreter.eval(expr, env)
         return interpreter.eval(self.body[-1], env)
+    
+    def __repr__(self) -> str:
+        return f"Function {self.name}, params {self.params}"
 
 class PythonFunction(Function):
     def __init__(self, name: Symbol, body, eval_args: bool, params=[], any_number_of_args=False) -> None:

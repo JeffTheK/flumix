@@ -1,6 +1,7 @@
 from ..types import Function, PythonFunction
 from .. import interpreter
 from ..error import raise_error
+from pprint import pprint
 import os
 
 home_directory = os.path.expanduser("~")
@@ -10,6 +11,10 @@ INCLUDE_FILE_SEARCH_DIRS = [current_working_dir, os.path.join(home_directory, ".
 def _print(args, env):
     for a in args:
         print(a)
+
+def _pprint(args, env):
+    for a in args:
+        pprint(a)
 
 def _do(args, env):
     for a in args:
@@ -62,6 +67,7 @@ STDLIB_CORE = {
     "set": PythonFunction("set", _set, False, ["symbol", "new-value"]),
     "func": PythonFunction("func", _func, False, any_number_of_args=True),
     "print": PythonFunction("print", _print, True, any_number_of_args=True),
+    "pprint": PythonFunction("pprint", _pprint, True, any_number_of_args=True),
     "if": PythonFunction("if", _if, False, ["condition", "on-true", "on-false"]),
     "include-file": PythonFunction("include-file", _include_file, True, ["path"]),
 }
