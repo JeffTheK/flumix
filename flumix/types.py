@@ -67,6 +67,9 @@ class Instance:
     def __init__(self, _class, variables) -> None:
         self._class = _class
         self.variables = variables
+    
+    def __repr__(self) -> str:
+        return f"{self._class.name}: {self.variables}"
 
 String = str
 Atom = (Symbol, Int, Float, String)

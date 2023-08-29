@@ -1,0 +1,5 @@
+(do
+    (class person (name age))
+    (var jeff (person/new "Jeff" 21))
+    (print jeff)
+)
