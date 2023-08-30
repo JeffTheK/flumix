@@ -15,7 +15,7 @@ def exec(args: "list[str]"):
         if "--tokenize" in args:
             tokenize_file(file_path)
         else:
-            exec_file(file_path)
+            exec_file(file_path, sys.argv[2:])
 
 def tokenize_file(file_path):
     file = open(file_path, 'r')
@@ -23,8 +23,8 @@ def tokenize_file(file_path):
     file.close()
     print(lexer.tokenize(contents, file_path))
 
-def exec_file(file_path: str):
+def exec_file(file_path: str, argv=None):
     file = open(file_path, 'r')
     contents = file.read()
     file.close()
-    interpreter.exec_string(contents)
+    interpreter.exec_string(contents, argv=argv)

@@ -2,6 +2,7 @@ from .types import Expression, Env, Symbol, Float, Int, Function, PythonFunction
 from . import lexer
 from . import parser
 from .stdlib.env import STD_ENV
+from .stdlib.list import List
 from .error import raise_error
 
 def function_call(expression: Expression, env: Env):
@@ -40,7 +41,10 @@ def analyze(expression: Expression, env: Env):
         if (not function.any_number_of_args) and len(args) != len(function.params):
             raise_error("Interpreter", f"wrong number of arguments when calling '{function_symbol}', expected {len(function.params)} got {len(args)}")
 
-def eval(expression: Expression, env: Env):
+def eval(expression: Expression, env: Env, argv=None):
+    if argv is not None:
+        env.global_env()[Symbol("*argv*")] = List(argv)
+
     analyze(expression, env)
 
     if is_variable_reference(expression):
@@ -50,7 +54,7 @@ def eval(expression: Expression, env: Env):
     else:
         return function_call(expression, env)
 
-def exec_string(string: str, env=STD_ENV):
+def exec_string(string: str, env=STD_ENV, argv=None):
     tokens = lexer.tokenize(string)
     expression = parser.parse_tokens(tokens)
-    return eval(expression, STD_ENV)
+    return eval(expression, env, argv)
