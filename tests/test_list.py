@@ -31,3 +31,14 @@ def test_set_at(capsys):
     exec_string(code)
     captured = capsys.readouterr()
     assert(captured.out == "99\n")
+
+def test_append(capsys):
+    code = """(do 
+    (var l (list/new 1 2 3 4 5))
+    (list/append l 6)
+    (print l)
+)
+"""
+    exec_string(code)
+    captured = capsys.readouterr()
+    assert(captured.out == "[1, 2, 3, 4, 5, 6]\n")

@@ -20,8 +20,14 @@ def _set_at(args, env):
     value = args[2]
     list[index] = value
 
+def _append(args, env):
+    list = args[0]
+    value = args[1]
+    list.append(value)
+
 STDLIB_LIST = {
     "list/new": PythonFunction("list/new", _list_new, True, [], any_number_of_args=True),
     "list/get-at": PythonFunction("list/get-at", _get_at, True, ["list", "index"]),
-    "list/set-at": PythonFunction("list/set-at", _set_at, True, ["list", "index", "value"])
+    "list/set-at": PythonFunction("list/set-at", _set_at, True, ["list", "index", "value"]),
+    "list/append": PythonFunction("list/append", _append, True, ["list", "value"])
 }
