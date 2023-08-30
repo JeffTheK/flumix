@@ -8,6 +8,6 @@ def global_env(args, env):
     return env.global_env()
 
 STDLIB_SPECIAL = {
-    "special/global-env": PythonFunction("special/global-env", global_env, False),
-    "special/env-contains": PythonFunction("special/env-contains", env_contains, False, ["object"])
+    "*global-env*": PythonFunction("*global-env*", global_env, False),
+    "*env-contains*": PythonFunction("*env-contains*", env_contains, False, ["object"])
 }
