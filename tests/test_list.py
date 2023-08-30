@@ -20,3 +20,14 @@ def test_get_at(capsys):
     exec_string(code)
     captured = capsys.readouterr()
     assert(captured.out == "1\n2\n5\n")
+
+def test_set_at(capsys):
+    code = """(do 
+    (var l (list/new 1 2 3 4 5))
+    (list/set-at l 2 99)
+    (print (list/get-at l 2))
+)
+"""
+    exec_string(code)
+    captured = capsys.readouterr()
+    assert(captured.out == "99\n")
