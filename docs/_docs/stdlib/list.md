@@ -1,6 +1,6 @@
 ---
-title: <built-in method capitalize of str object at 0x7f45ea343230>
-description: <built-in method capitalize of str object at 0x7f45ea343230> functions and variables
+title: List
+description: List functions and variables
 ---
 
 # List

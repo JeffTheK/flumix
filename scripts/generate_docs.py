@@ -7,8 +7,8 @@ OUTPUT_DIR = os.path.join("docs", "_docs", "stdlib")
 
 def generate_markdown(env, module: str):
     output = f"""---
-title: {module.capitalize}
-description: {module.capitalize} functions and variables
+title: {module.capitalize()}
+description: {module.capitalize()} functions and variables
 ---
 
 # {module.capitalize()}

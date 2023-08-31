@@ -1,6 +1,6 @@
 ---
-title: <built-in method capitalize of str object at 0x7f45ea1ba530>
-description: <built-in method capitalize of str object at 0x7f45ea1ba530> functions and variables
+title: Object oriented programming
+description: Object oriented programming functions and variables
 ---
 
 # Object oriented programming

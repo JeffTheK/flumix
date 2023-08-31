@@ -1,6 +1,6 @@
 ---
-title: <built-in method capitalize of str object at 0x7f45ea1562b0>
-description: <built-in method capitalize of str object at 0x7f45ea1562b0> functions and variables
+title: Core
+description: Core functions and variables
 ---
 
 # Core
