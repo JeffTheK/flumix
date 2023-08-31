@@ -1,6 +1,6 @@
 ---
-title: Special
-description: Special functions and variables
+title: "Special"
+description: "Special functions and variables"
 ---
 
 # Special
@@ -10,14 +10,12 @@ description: Special functions and variables
 ```lisp
 (*global-env*)
 ```
-
-
+No description
 
 ### *env-contains*
 
 ```lisp
 (*env-contains* object)
 ```
-
-
+No description
 

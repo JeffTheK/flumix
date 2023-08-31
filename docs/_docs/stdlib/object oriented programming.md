@@ -1,6 +1,6 @@
 ---
-title: Object oriented programming
-description: Object oriented programming functions and variables
+title: "Object oriented programming"
+description: "Object oriented programming functions and variables"
 ---
 
 # Object oriented programming
@@ -10,22 +10,19 @@ description: Object oriented programming functions and variables
 ```lisp
 (class name instance-variables)
 ```
-
-
+No description
 
 ### getp
 
 ```lisp
 (getp property instance)
 ```
-
-
+No description
 
 ### setp
 
 ```lisp
 (setp property instance new-value)
 ```
-
-
+No description
 

@@ -7,8 +7,8 @@ OUTPUT_DIR = os.path.join("docs", "_docs", "stdlib")
 
 def generate_markdown(env, module: str):
     output = f"""---
-title: {module.capitalize()}
-description: {module.capitalize()} functions and variables
+title: "{module.capitalize()}"
+description: "{module.capitalize()} functions and variables"
 ---
 
 # {module.capitalize()}
@@ -25,9 +25,12 @@ description: {module.capitalize()} functions and variables
                 output += f" {param}"
             output += ")\n"
             output += "```\n"
-            output += "\n"
-            output += f"{value.description}\n"
-            output += "\n"
+            if value.description != "":
+                output += "\n"
+                output += f"{value.description}\n"
+                output += "\n"
+            else:
+                output += "No description\n\n"
     
     return output
 

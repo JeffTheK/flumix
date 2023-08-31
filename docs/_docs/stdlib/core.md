@@ -1,6 +1,6 @@
 ---
-title: Core
-description: Core functions and variables
+title: "Core"
+description: "Core functions and variables"
 ---
 
 # Core

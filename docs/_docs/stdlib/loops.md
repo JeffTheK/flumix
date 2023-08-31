@@ -1,6 +1,6 @@
 ---
-title: Loops
-description: Loops functions and variables
+title: "Loops"
+description: "Loops functions and variables"
 ---
 
 # Loops
@@ -10,6 +10,5 @@ description: Loops functions and variables
 ```lisp
 (for var condition increment action)
 ```
-
-
+No description
 
