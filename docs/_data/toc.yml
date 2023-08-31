@@ -3,11 +3,21 @@
   links:
     - title: "Standard Library"
       children:
-        - title: Core
+        - title: "Core"
           url: "docs/stdlib/core"
-        - title: Operators
+        - title: "Operators"
           url: "docs/stdlib/operators"
-        - title: Special
+        - title: "Object-oriented-programming"
+          url: "docs/stdlib/object-oriented-programming"
+        - title: "Loops"
+          url: "docs/stdlib/loops"
+        - title: "Special"
           url: "docs/stdlib/special"
+        - title: "Py-wrapper"
+          url: "docs/stdlib/py-wrapper"
+        - title: "List"
+          url: "docs/stdlib/list"
+
     - title: "About"
       url: "about"
+

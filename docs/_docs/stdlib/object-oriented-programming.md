@@ -1,9 +1,9 @@
 ---
-title: "Object oriented programming"
-description: "Object oriented programming functions and variables"
+title: "Object-oriented-programming"
+description: "Object-oriented-programming functions and variables"
 ---
 
-# Object oriented programming
+# Object-oriented-programming
 
 ### class
 

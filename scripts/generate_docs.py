@@ -1,5 +1,5 @@
 import flumix
-from flumix.stdlib import *
+from flumix.stdlib import STDLIB_MODULES
 from flumix.types import PythonFunction
 import os
 
@@ -30,6 +30,7 @@ description: "{module.capitalize()} functions and variables"
                 output += f"{value.description}\n"
                 output += "\n"
             else:
+                print(f"{module}/{value.name} has no description")
                 output += "No description\n\n"
     
     return output
@@ -37,12 +38,30 @@ description: "{module.capitalize()} functions and variables"
 def generate_file(env, module: str):
     text = generate_markdown(env, module)
     path = os.path.join(OUTPUT_DIR, module + ".md")
-    with open(path, "w") as file:
+    with open(path, 'w') as file:
         file.write(text)
 
-generate_file(STDLIB_CORE, "core")
-generate_file(STDLIB_LIST, "list")
-generate_file(STDLIB_LOOPS, "loops")
-generate_file(STDLIB_OOP, "object oriented programming")
-generate_file(STDLIB_OPERATORS, "operators")
-generate_file(STDLIB_SPECIAL, "special")
+def generate_toc(modules: "list[str]"):
+    path = os.path.join("docs", "_data", "toc.yml")
+    modules_text = ""
+    for module in modules:
+        modules_text += f'        - title: "{module.capitalize()}"\n'
+        modules_text += f'          url: "docs/stdlib/{module}"\n'
+
+    text = f"""- title: Documentation
+  url: docs
+  links:
+    - title: "Standard Library"
+      children:
+{modules_text}
+    - title: "About"
+      url: "about"
+
+"""
+    with open(path, 'w') as file:
+        file.write(text)
+
+for name, value in STDLIB_MODULES.items():
+    generate_file(value, name)
+
+generate_toc(STDLIB_MODULES.keys())

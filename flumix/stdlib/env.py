@@ -7,11 +7,17 @@ from .py_wrapper import STDLIB_PY_WRAPPER
 from .list import STDLIB_LIST
 from ..types import Env
 
+STDLIB_MODULES = {
+    "core": STDLIB_CORE,
+    "operators": STDLIB_OPERATORS,
+    "object-oriented-programming": STDLIB_OOP,
+    "loops": STDLIB_LOOPS,
+    "special": STDLIB_SPECIAL,
+    "py-wrapper": STDLIB_PY_WRAPPER,
+    "list": STDLIB_LIST
+}
+
 STD_ENV: Env = Env(None)
-STD_ENV.update(STDLIB_CORE)
-STD_ENV.update(STDLIB_OPERATORS)
-STD_ENV.update(STDLIB_OOP)
-STD_ENV.update(STDLIB_LOOPS)
-STD_ENV.update(STDLIB_SPECIAL)
-STD_ENV.update(STDLIB_PY_WRAPPER)
-STD_ENV.update(STDLIB_LIST)
+
+for module in STDLIB_MODULES.values():
+    STD_ENV.update(module)
