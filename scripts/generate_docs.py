@@ -38,7 +38,14 @@ description: "{module.capitalize()} functions and variables"
 
 # {module.capitalize()}
 
+## Table
+
 """
+
+    for value in env.values():
+        if isinstance(value, PythonFunction):
+            output += f"[`({value.name})`](#{value.name})  "
+    output += "\n"
 
     for value in env.values():
         if isinstance(value, PythonFunction):
@@ -46,7 +53,7 @@ description: "{module.capitalize()} functions and variables"
             for param in value.params:
                 output += f" {param}"
             output += ")`\n"
-            output += "\n"
+            output += f'<a id="{value.name}"></a>\n'
             if value.description != "":
                 output += "```\n"
                 output += f"{value.description}\n"
