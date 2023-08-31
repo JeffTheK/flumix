@@ -5,24 +5,18 @@ description: "Object-oriented-programming functions and variables"
 
 # Object-oriented-programming
 
-### class
+## `(class name instance-variables)`
 
-```lisp
-(class name instance-variables)
-```
 No description
 
-### getp
+<br>
+## `(getp property instance)`
 
-```lisp
-(getp property instance)
-```
 No description
 
-### setp
+<br>
+## `(setp property instance new-value)`
 
-```lisp
-(setp property instance new-value)
-```
 No description
 
+<br>

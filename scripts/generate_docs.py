@@ -1,9 +1,34 @@
 import flumix
-from flumix.stdlib import STDLIB_MODULES
+from flumix.stdlib import STDLIB_MODULES, STD_ENV
 from flumix.types import PythonFunction
+from flumix import interpreter
+from contextlib import redirect_stdout
 import os
+import io
 
 OUTPUT_DIR = os.path.join("docs", "_docs", "stdlib")
+EXAMPLES_DIR = os.path.join("docs", "examples")
+
+def generate_example(env, module: str, value: str):
+    output = ""
+    # example
+    example_file_path = os.path.join(EXAMPLES_DIR, module, value.name.replace('/', '-') + '.fl')
+    if os.path.exists(example_file_path):
+        output += "##### Example\n"
+        code = open(example_file_path, 'r').read()
+        result = ""
+        out = io.StringIO()
+        with redirect_stdout(out):
+            result += str(interpreter.exec_string(code, STD_ENV)) + "\n"
+            if result == "None\n":
+                result = ""
+        result += out.getvalue()
+        output += f"""```lisp
+{code}
+--> {result}
+```
+"""
+    return output
 
 def generate_markdown(env, module: str):
     output = f"""---
@@ -17,21 +42,20 @@ description: "{module.capitalize()} functions and variables"
 
     for value in env.values():
         if isinstance(value, PythonFunction):
-            output += f"### {value.name}\n"
-            output += "\n"
-            output += "```lisp\n"
-            output += f"({value.name}"
+            output += f"## `({value.name}"
             for param in value.params:
                 output += f" {param}"
-            output += ")\n"
-            output += "```\n"
+            output += ")`\n"
+            output += "\n"
             if value.description != "":
-                output += "\n"
+                output += "```\n"
                 output += f"{value.description}\n"
-                output += "\n"
+                output += "```\n"
             else:
                 print(f"{module}/{value.name} has no description")
                 output += "No description\n\n"
+            output += generate_example(env, module, value)
+            output += "<br>\n"
     
     return output
 

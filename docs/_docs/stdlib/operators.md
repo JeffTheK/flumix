@@ -5,101 +5,73 @@ description: "Operators functions and variables"
 
 # Operators
 
-### +
+## `(+ a b)`
 
-```lisp
-(+ a b)
-```
 No description
 
-### -
+<br>
+## `(- a b)`
 
-```lisp
-(- a b)
-```
 No description
 
-### *
+<br>
+## `(* a b)`
 
-```lisp
-(* a b)
-```
 No description
 
-### /
+<br>
+## `(/ a b)`
 
-```lisp
-(/ a b)
-```
 No description
 
-### ^
+<br>
+## `(^ a b)`
 
-```lisp
-(^ a b)
-```
 No description
 
-### ==
+<br>
+## `(== a b)`
 
-```lisp
-(== a b)
-```
 No description
 
-### !=
+<br>
+## `(!= a b)`
 
-```lisp
-(!= a b)
-```
 No description
 
-### >
+<br>
+## `(> a b)`
 
-```lisp
-(> a b)
-```
 No description
 
-### <
+<br>
+## `(< a b)`
 
-```lisp
-(< a b)
-```
 No description
 
-### >=
+<br>
+## `(>= a b)`
 
-```lisp
-(>= a b)
-```
 No description
 
-### <=
+<br>
+## `(<= a b)`
 
-```lisp
-(<= a b)
-```
 No description
 
-### not
+<br>
+## `(not)`
 
-```lisp
-(not)
-```
 No description
 
-### and
+<br>
+## `(and)`
 
-```lisp
-(and)
-```
 No description
 
-### or
+<br>
+## `(or)`
 
-```lisp
-(or)
-```
 No description
 
+<br>

@@ -5,38 +5,28 @@ description: "Py-wrapper functions and variables"
 
 # Py-wrapper
 
-### py-wrapper/new-class-wrapper
+## `(py-wrapper/new-class-wrapper wrapper-name python-class-name)`
 
-```lisp
-(py-wrapper/new-class-wrapper wrapper-name python-class-name)
-```
 No description
 
-### py-wrapper/new-instance
+<br>
+## `(py-wrapper/new-instance class-name init-args)`
 
-```lisp
-(py-wrapper/new-instance class-name init-args)
-```
 No description
 
-### py-wrapper/call-method
+<br>
+## `(py-wrapper/call-method method-name instance-name method-args)`
 
-```lisp
-(py-wrapper/call-method method-name instance-name method-args)
-```
 No description
 
-### py-wrapper/eval
+<br>
+## `(py-wrapper/eval string)`
 
-```lisp
-(py-wrapper/eval string)
-```
 No description
 
-### py-wrapper/import
+<br>
+## `(py-wrapper/import module-name)`
 
-```lisp
-(py-wrapper/import module-name)
-```
 No description
 
+<br>

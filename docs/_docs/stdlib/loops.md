@@ -5,10 +5,8 @@ description: "Loops functions and variables"
 
 # Loops
 
-### for
+## `(for var condition increment action)`
 
-```lisp
-(for var condition increment action)
-```
 No description
 
+<br>

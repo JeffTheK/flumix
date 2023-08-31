@@ -1,0 +1,7 @@
+(do
+    (func my-add (a b)
+        (+ a b)
+    )
+
+    (print (my-add 2 3))
+)

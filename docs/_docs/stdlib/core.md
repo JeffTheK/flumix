@@ -5,83 +5,84 @@ description: "Core functions and variables"
 
 # Core
 
-### do
+## `(do statements...)`
 
-```lisp
-(do statements...)
 ```
-
 Executes all statements
-
-### var
-
-```lisp
-(var name value)
 ```
+<br>
+## `(var name value)`
 
+```
 Defines a new variable
-
-### set
-
-```lisp
-(set symbol new-value)
 ```
+##### Example
+```lisp
+(do
+    (var i 5)
+    (print i)
+)
+--> 5
 
+```
+<br>
+## `(set symbol new-value)`
+
+```
 Modifies an existing variable
-
-### func
-
-```lisp
-(func name (params...) body...)
 ```
+<br>
+## `(func name (params...) body...)`
 
+```
 Defines a new function
-
-### macro
-
-```lisp
-(macro name (params...) body...)
 ```
+##### Example
+```lisp
+(do
+    (func my-add (a b)
+        (+ a b)
+    )
 
+    (print (my-add 2 3))
+)
+--> 5
+
+```
+<br>
+## `(macro name (params...) body...)`
+
+```
 Defines a new macro
-
-### eval
-
-```lisp
-(eval statements...)
 ```
+<br>
+## `(eval statements...)`
 
+```
 Evaluates all statements
-
-### print
-
-```lisp
-(print args...)
 ```
+<br>
+## `(print args...)`
 
+```
 Outputs arguments
-
-### pprint
-
-```lisp
-(pprint args...)
 ```
+<br>
+## `(pprint args...)`
 
+```
 Outputs values with pretty formatting
-
-### if
-
-```lisp
-(if condition on-true on-false)
 ```
+<br>
+## `(if condition on-true on-false)`
 
+```
 If statement
-
-### include-file
-
-```lisp
-(include-file path)
 ```
+<br>
+## `(include-file path)`
 
+```
 Loads source code file from local path or stdlib package
-
+```
+<br>

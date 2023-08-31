@@ -5,17 +5,13 @@ description: "Special functions and variables"
 
 # Special
 
-### *global-env*
+## `(*global-env*)`
 
-```lisp
-(*global-env*)
-```
 No description
 
-### *env-contains*
+<br>
+## `(*env-contains* object)`
 
-```lisp
-(*env-contains* object)
-```
 No description
 
+<br>
