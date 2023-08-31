@@ -1,25 +1,9 @@
 ---
-title: Core
-description: Core functions and variables
+title: <built-in method capitalize of str object at 0x7f45ea1562b0>
+description: <built-in method capitalize of str object at 0x7f45ea1562b0> functions and variables
 ---
 
 # Core
-
-### print
-
-```lisp
-(print args...)
-```
-
-Outputs all arguments
-
-### var
-
-```lisp
-(var name value)
-```
-
-Defines a new variable
 
 ### do
 
@@ -29,20 +13,26 @@ Defines a new variable
 
 Executes all statements
 
+### var
+
+```lisp
+(var name value)
+```
+
+Defines a new variable
+
 ### set
 
 ```lisp
-(set variable value)
+(set symbol new-value)
 ```
 
-Overrides variable with new value
+Modifies an existing variable
 
 ### func
 
 ```lisp
-(func name (parameters...)
-    statements...
-)
+(func name (params...) body...)
 ```
 
 Defines a new function
@@ -50,22 +40,42 @@ Defines a new function
 ### macro
 
 ```lisp
-(macro name (parameters...)
-    statements...
-)
+(macro name (params...) body...)
 ```
 
-Defines a new macro. The difference between a function and a macro is
-that when calling a function, all parameters are evaluated by default,
-where as in macros, they are not
+Defines a new macro
 
 ### eval
 
 ```lisp
-(eval args...)
+(eval statements...)
 ```
 
-Evaluates arguments
+Evaluates all statements
+
+### print
+
+```lisp
+(print args...)
+```
+
+Outputs arguments
+
+### pprint
+
+```lisp
+(pprint args...)
+```
+
+Outputs values with pretty formatting
+
+### if
+
+```lisp
+(if condition on-true on-false)
+```
+
+If statement
 
 ### include-file
 
@@ -73,15 +83,5 @@ Evaluates arguments
 (include-file path)
 ```
 
-Loads a file from relative path or from stdlib package
+Loads source code file from local path or stdlib package
 
-### if
-
-```lisp
-(if condition
-    on-true
-    on-false
-)
-```
-
-If statement

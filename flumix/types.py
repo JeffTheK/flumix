@@ -38,12 +38,13 @@ class Env(dict):
             return self.outer.global_env()
         
 class Function:
-    def __init__(self, name: Symbol, body, eval_args: bool, params=[], any_number_of_args=False) -> None:
+    def __init__(self, name: Symbol, body, eval_args: bool, params=[], any_number_of_args=False, description="") -> None:
         self.name = name
         self.body = body
         self.eval_args = eval_args
         self.params = params
         self.any_number_of_args = any_number_of_args
+        self.description = description
     
     def exec(self, args, env: Env):
         from . import interpreter
@@ -55,8 +56,8 @@ class Function:
         return f"Function {self.name}, params {self.params}"
 
 class PythonFunction(Function):
-    def __init__(self, name: Symbol, body, eval_args: bool, params=[], any_number_of_args=False) -> None:
-        super().__init__(name, body, eval_args, params, any_number_of_args)
+    def __init__(self, name: Symbol, body, eval_args: bool, params=[], any_number_of_args=False, description="") -> None:
+        super().__init__(name, body, eval_args, params, any_number_of_args, description)
     
     def exec(self, args, env: Env):
         return self.body(args, env)

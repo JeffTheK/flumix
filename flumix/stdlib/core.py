@@ -72,14 +72,14 @@ def _if(args, env):
         interpreter.eval(on_false, env)
 
 STDLIB_CORE = {
-    "do": PythonFunction("do", _do, False, any_number_of_args=True),
-    "var": PythonFunction("var", _var, False, ["name", "value"]),
-    "set": PythonFunction("set", _set, False, ["symbol", "new-value"]),
-    "func": PythonFunction("func", _func, False, any_number_of_args=True),
-    "macro": PythonFunction("macro", _macro, False, any_number_of_args=True),
-    "eval": PythonFunction("eval", _eval, False, any_number_of_args=True),
-    "print": PythonFunction("print", _print, True, any_number_of_args=True),
-    "pprint": PythonFunction("pprint", _pprint, True, any_number_of_args=True),
-    "if": PythonFunction("if", _if, False, ["condition", "on-true", "on-false"]),
-    "include-file": PythonFunction("include-file", _include_file, True, ["path"]),
+    "do": PythonFunction("do", _do, False, ["statements..."], any_number_of_args=True, description="Executes all statements"),
+    "var": PythonFunction("var", _var, False, ["name", "value"], description="Defines a new variable"),
+    "set": PythonFunction("set", _set, False, ["symbol", "new-value"], description="Modifies an existing variable"),
+    "func": PythonFunction("func", _func, False, ["name", "(params...)", "body..."], any_number_of_args=True, description="Defines a new function"),
+    "macro": PythonFunction("macro", _macro, False, ["name", "(params...)", "body..."], any_number_of_args=True, description="Defines a new macro"),
+    "eval": PythonFunction("eval", _eval, False, ["statements..."], any_number_of_args=True, description="Evaluates all statements"),
+    "print": PythonFunction("print", _print, True, ["args..."], any_number_of_args=True, description="Outputs arguments"),
+    "pprint": PythonFunction("pprint", _pprint, True, ["args..."], any_number_of_args=True, description="Outputs values with pretty formatting"),
+    "if": PythonFunction("if", _if, False, ["condition", "on-true", "on-false"], description="If statement"),
+    "include-file": PythonFunction("include-file", _include_file, True, ["path"], description="Loads source code file from local path or stdlib package"),
 }

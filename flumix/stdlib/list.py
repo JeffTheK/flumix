@@ -1,6 +1,4 @@
 from ..types import Function, PythonFunction, Class
-from .. import interpreter
-from .core import _var
 
 class List(list):
     def __init__(self, *args):

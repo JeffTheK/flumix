@@ -1,24 +1,23 @@
 ---
-title: Special
-description: Special functions and variables
+title: <built-in method capitalize of str object at 0x7f45ea1564b0>
+description: <built-in method capitalize of str object at 0x7f45ea1564b0> functions and variables
 ---
 
 # Special
 
-All special functions and variables have `*` symbol around them
-
-### \*global-env\*
+### *global-env*
 
 ```lisp
 (*global-env*)
 ```
 
-Returns dictionary of global env
 
-### \*env-contains\*
+
+### *env-contains*
 
 ```lisp
-(*env-contains* symbol)
+(*env-contains* object)
 ```
 
-True if env contains symbol
+
+
