@@ -42,12 +42,14 @@ description: "{module.capitalize()} functions and variables"
 
 """
 
-    for value in env.values():
+    functions = sorted(env.values(), key=lambda obj: obj.name)
+
+    for value in functions:
         if isinstance(value, PythonFunction):
             output += f"[`({value.name})`](#{value.name})  "
     output += "\n"
 
-    for value in env.values():
+    for value in functions:
         if isinstance(value, PythonFunction):
             output += f"## `({value.name}"
             for param in value.params:

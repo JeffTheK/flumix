@@ -7,18 +7,16 @@ description: "Special functions and variables"
 
 ## Table
 
-[`(*global-env*)`](#*global-env*)  [`(*env-contains*)`](#*env-contains*)  
-## `(*global-env*)`
-<a id="*global-env*"></a>
-```
-No description
-```
-
-<br>
+[`(*env-contains*)`](#*env-contains*)  [`(*global-env*)`](#*global-env*)  
 ## `(*env-contains* object)`
 <a id="*env-contains*"></a>
 ```
-No description
+True if env-contains object
 ```
-
+<br>
+## `(*global-env*)`
+<a id="*global-env*"></a>
+```
+Returns current global env
+```
 <br>
