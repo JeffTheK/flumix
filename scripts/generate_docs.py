@@ -82,6 +82,8 @@ def generate_toc(modules: "list[str]"):
     text = f"""- title: Documentation
   url: docs
   links:
+    - title: "Installation"
+      url: "docs/installation"
     - title: "Standard Library"
       children:
 {modules_text}

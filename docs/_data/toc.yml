@@ -1,6 +1,8 @@
 - title: Documentation
   url: docs
   links:
+    - title: "Installation"
+      url: "docs/installation"
     - title: "Standard Library"
       children:
         - title: "Core"
