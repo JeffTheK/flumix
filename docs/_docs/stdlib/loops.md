@@ -10,6 +10,8 @@ description: "Loops functions and variables"
 [`(for)`](#for)  
 ## `(for var condition increment action)`
 <a id="for"></a>
+```
 No description
+```
 
 <br>

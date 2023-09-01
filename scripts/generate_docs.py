@@ -60,7 +60,7 @@ description: "{module.capitalize()} functions and variables"
                 output += "```\n"
             else:
                 print(f"{module}/{value.name} has no description")
-                output += "No description\n\n"
+                output += "```\nNo description\n```\n\n"
             output += generate_example(env, module, value)
             output += "<br>\n"
     
